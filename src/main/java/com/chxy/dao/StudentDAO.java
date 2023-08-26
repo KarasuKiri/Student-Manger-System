@@ -7,5 +7,4 @@ import com.chxy.daomain.Student;
  * @version 1.0
  */
 public class StudentDAO extends BasicDAO<Student> {
-
 }

@@ -12,6 +12,7 @@ import java.util.Properties;
 
 /**
  * 基于druid数据库连接池的工具类
+ *
  * @author chxy
  * @version 1.0
  */

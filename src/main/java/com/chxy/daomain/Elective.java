@@ -2,6 +2,7 @@ package com.chxy.daomain;
 
 /**
  * Elective 对象和 elective表的记录对应
+ *
  * @author chxy
  * @version 1.0
  */
@@ -45,4 +46,5 @@ public class Elective {
                 ", cno='" + cno + '\'' +
                 '}';
     }
+
 }

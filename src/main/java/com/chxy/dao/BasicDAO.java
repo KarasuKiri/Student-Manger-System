@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * 开发BasicDAO ，是其他DAO的父类
+ *
  * @author chxy
  * @version 1.0
  */
@@ -21,7 +22,8 @@ public class BasicDAO<T> { //泛型指定具体类型
 
     /**
      * 功能：操作数据库数据
-     * @param sql SQL 语言，？ 作占位符
+     *
+     * @param sql        SQL 语言，？ 作占位符
      * @param parameters 传入 ？的具体的值，可以是多个
      * @return 影响的行数
      */
@@ -39,8 +41,9 @@ public class BasicDAO<T> { //泛型指定具体类型
 
     /**
      * 功能：查询多行数据
-     * @param sql SQL 语句，？ 作占位符
-     * @param clazz 传入要查询表所对应类的 Class对象
+     *
+     * @param sql        SQL 语句，？ 作占位符
+     * @param clazz      传入要查询表所对应类的 Class对象
      * @param parameters 传入 ？的具体的值，可以是多个
      * @return 根据传入的 Class对象返回对应的 ArrayList集合
      */
@@ -58,8 +61,9 @@ public class BasicDAO<T> { //泛型指定具体类型
 
     /**
      * 功能：查询单行数据
-     * @param sql SQL 语句，？ 作占位符
-     * @param clazz 传入要查询表所对应类的 Class对象
+     *
+     * @param sql        SQL 语句，？ 作占位符
+     * @param clazz      传入要查询表所对应类的 Class对象
      * @param parameters 传入 ？的具体的值，可以是多个
      * @return 根据传入的 Class对象返回对应类型的对象
      */
@@ -77,7 +81,8 @@ public class BasicDAO<T> { //泛型指定具体类型
 
     /**
      * 功能：查询单行单列数据
-     * @param sql SQL 语句，？ 作占位符
+     *
+     * @param sql        SQL 语句，？ 作占位符
      * @param parameters 传入 ？的具体的值，可以是多个
      * @return 所查询字段对应的对象
      */

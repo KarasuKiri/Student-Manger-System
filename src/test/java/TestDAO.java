@@ -1,7 +1,5 @@
 import com.chxy.dao.StudentDAO;
 import com.chxy.daomain.Student;
-import com.chxy.utils.Utility;
-import com.chxy.view.SMSView;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

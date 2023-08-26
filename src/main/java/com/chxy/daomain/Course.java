@@ -2,6 +2,7 @@ package com.chxy.daomain;
 
 /**
  * Course 对象和 course表的记录对应
+ *
  * @author chxy
  * @version 1.0
  */
@@ -51,10 +52,7 @@ public class Course {
 
     @Override
     public String toString() {
-        return "Course{" +
-                "cno='" + cno + '\'' +
-                ", cname='" + cname + '\'' +
-                ", credit=" + credit +
-                '}';
+        return ", cname='" + cname + '\'';
     }
+
 }

@@ -13,6 +13,7 @@ public class Utility {
 
     /**
      * 功能：读取键盘输入的一个菜单选项，值：1——5的范围
+     *
      * @return 1——5
      */
     public static char readMenuSelection() {
@@ -30,6 +31,7 @@ public class Utility {
 
     /**
      * 功能：读取键盘输入的一个字符
+     *
      * @return 一个字符
      */
     public static char readChar() {
@@ -39,6 +41,7 @@ public class Utility {
 
     /**
      * 功能：读取键盘输入的一个字符，如果直接回车，则返回指定的默认值
+     *
      * @param defaultValue 指定的默认值
      * @return 默认值或输入的字符
      */
@@ -49,6 +52,7 @@ public class Utility {
 
     /**
      * 功能：读取键盘输入的整数，长度小于2位
+     *
      * @return 整数
      */
     public static int readInt() {
@@ -68,6 +72,7 @@ public class Utility {
 
     /**
      * 功能：读取键盘输入的整数或默认值，如果直接回车，则返回默认值，否则返回输入的整数
+     *
      * @param defaultValue 指定的默认值
      * @return 整数或默认值
      */
@@ -92,6 +97,7 @@ public class Utility {
 
     /**
      * 功能：读取键盘输入的指定长度的字符串
+     *
      * @param limit 限制的长度
      * @return 指定长度的字符串
      */
@@ -101,7 +107,8 @@ public class Utility {
 
     /**
      * 功能：读取键盘输入的指定长度的字符串或默认值，如果直接回车，则返回默认值
-     * @param limit 限制的长度
+     *
+     * @param limit        限制的长度
      * @param defaultValue 指定的默认值
      * @return 指定长度的字符串或默认值
      */
@@ -112,6 +119,7 @@ public class Utility {
 
     /**
      * 功能：读取键盘输入的确认选项，Y或N
+     *
      * @return Y或N
      */
     public static char readConfirmSelection() {
@@ -131,7 +139,8 @@ public class Utility {
 
     /**
      * 功能：读取一个字符串
-     * @param limit 读取的长度
+     *
+     * @param limit       读取的长度
      * @param blankReturn 如果为true，表示可以读空字符串；
      *                    <p>如果为false，表示不能读空字符串。</p>
      *                    <p>如果输入为空，或者输入大于 limit的长度，就会提示重新输入。</p>
@@ -147,8 +156,7 @@ public class Utility {
             if (line.isEmpty()) {
                 if (blankReturn) {
                     return line; //如果blankReturn为true，可以返回空串
-                }
-                else {
+                } else {
                     System.out.print("输入不能为空，请重新输入：");
                     continue; //如果blankReturn为false，不接受空串，必须输入内容
                 }
@@ -168,6 +176,7 @@ public class Utility {
 
     /**
      * 功能：隐式的读入密码再返回给变量存储
+     *
      * @param limit 限制的长度
      * @return 字符串
      */

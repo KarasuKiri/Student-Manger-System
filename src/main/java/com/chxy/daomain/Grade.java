@@ -2,6 +2,7 @@ package com.chxy.daomain;
 
 /**
  * Grade 对象和 grade表的记录对应
+ *
  * @author chxy
  * @version 1.0
  */
@@ -62,11 +63,7 @@ public class Grade {
 
     @Override
     public String toString() {
-        return "Grade{" +
-                "sno='" + sno + '\'' +
-                ", cno='" + cno + '\'' +
-                ", score=" + score +
-                ", gpa=" + gpa +
-                '}';
+        return ", score=" + score +
+                ", gpa=" + gpa;
     }
 }
