@@ -3,10 +3,7 @@ package com.chxy.view;
 import com.chxy.daomain.Course;
 import com.chxy.daomain.Grade;
 import com.chxy.daomain.User;
-import com.chxy.service.CourseService;
-import com.chxy.service.GradeService;
-import com.chxy.service.StudentService;
-import com.chxy.service.UserService;
+import com.chxy.service.*;
 import com.chxy.utils.Utility;
 
 import java.util.List;
@@ -26,6 +23,10 @@ public class SMSView {
      * password：密码
      * choice：确认选项
      * userService：UserService 对象
+     * gradeService：GradeService 对象
+     * studentService：StudentService 对象
+     * courseService：CourseService 对象
+     * electiveService：ElectiveService对象
      */
     private boolean loop = true;
     private String key = "";
@@ -36,6 +37,7 @@ public class SMSView {
     private GradeService gradeService = new GradeService();
     private StudentService studentService = new StudentService();
     private CourseService courseService = new CourseService();
+    private ElectiveService electiveService = new ElectiveService();
 
     /**
      * 功能：显示主菜单
@@ -86,11 +88,12 @@ public class SMSView {
             System.out.println("===============学生成绩学分制管理系统（二级菜单）===============");
             System.out.println("\t\t 1 查询学生成绩");
             System.out.println("\t\t 2 修改学生分数");
-            System.out.println("\t\t 3 修改学生信息");
-            System.out.println("\t\t 4 修改选课信息");
-            System.out.println("\t\t 5 修改课程信息");
-            System.out.println("\t\t 6 修改密码");
-            System.out.println("\t\t 7 退出登录");
+            System.out.println("\t\t 3 添加学生信息");
+            System.out.println("\t\t 4 添加课程信息");
+            System.out.println("\t\t 5 添加选课信息");
+            System.out.println("\t\t 6 添加学生分数");
+            System.out.println("\t\t 7 修改密码");
+            System.out.println("\t\t 8 退出登录");
             System.out.print("请输入你的选择：");
 
             key = Utility.readString(1);
@@ -99,35 +102,105 @@ public class SMSView {
                     System.out.print("请输入学号：");
                     String sno = Utility.readString(20);
 
-                    List<Grade> grade = gradeService.getScoreAndGpaBySno(sno);
-                    if (grade.isEmpty()) {
+                    List<Grade> grades = gradeService.getScoreAndGPABySno(sno);
+                    if (grades.isEmpty()) {
                         System.out.println("记录不存在！");
                     } else {
                         String sname = studentService.getSnameBySno(sno);
-                        List<Course> cname = courseService.getCnameBySno(sno);
-                        for (int i = 0; i < grade.size(); ++i) {
-                            System.out.println("sname='" + sname + '\'' + cname.get(i) + grade.get(i));
+                        List<Course> courses = courseService.getCnoAndCnameBySno(sno);
+                        for (int i = 0; i < grades.size(); ++i) {
+                            System.out.println("sname='" + sname + '\'' + courses.get(i) + grades.get(i));
                         }
                         System.out.println("===============显示完毕===============\n");
                     }
                 }
                 case "2" -> {
-                    // TODO: 2023/8/21 修改学生分数的逻辑
+                    System.out.print("请输入学号：");
+                    String sno = Utility.readString(20);
 
+                    System.out.print("请输入课程编号：");
+                    String cno = Utility.readString(20);
+
+                    if (gradeService.getGradeBySnoAndCno(sno, cno).isEmpty()) {
+                        System.out.println("记录不存在！");
+                    } else {
+                        System.out.print("请输入新的分数：");
+                        Double newScore = Utility.readDouble();
+
+                        if (gradeService.changeScore(sno, cno, newScore) > 0) {
+                            System.out.println("学生分数修改成功！");
+                        } else {
+                            System.out.println("学生分数修改失败！");
+                        }
+                    }
                 }
                 case "3" -> {
-                    // TODO: 2023/8/21 修改学生信息的逻辑
+                    System.out.print("请输入学号：");
+                    String sno = Utility.readString(20);
 
+                    System.out.print("请输入姓名：");
+                    String sname = Utility.readString(50);
+
+                    if (studentService.add(sno, sname) > 0) {
+                        System.out.println("学生信息添加成功！");
+                    } else {
+                        System.out.println("学生信息添加失败！");
+                    }
                 }
                 case "4" -> {
-                    // TODO: 2023/8/21 修改选课信息的逻辑
+                    System.out.print("请输入课程编号：");
+                    String cno = Utility.readString(20);
 
+                    System.out.print("请输入课程名：");
+                    String cname = Utility.readString(100);
+
+                    System.out.print("请输入课程学分：");
+                    Double credit = Utility.readDouble();
+
+                    if (courseService.add(cno, cname, credit) > 0) {
+                        System.out.println("课程信息添加成功！");
+                    } else {
+                        System.out.println("课程信息添加失败！");
+                    }
                 }
                 case "5" -> {
-                    // TODO: 2023/8/21 修改课程信息的逻辑
+                    System.out.print("请输入学号：");
+                    String sno = Utility.readString(20);
 
+                    System.out.print("请输入课程编号：");
+                    String cno = Utility.readString(20);
+
+                    if (studentService.getSnameBySno(sno) == null) {
+                        System.out.println("该学生不存在！");
+                    } else if (courseService.getCourseByCno(cno) == null) {
+                        System.out.println("该课程不存在！");
+                    } else {
+                        if (electiveService.add(sno, cno) > 0) {
+                            System.out.println("选课信息添加成功！");
+                        } else {
+                            System.out.println("选课信息添加失败！");
+                        }
+                    }
                 }
                 case "6" -> {
+                    System.out.print("请输入学号：");
+                    String sno = Utility.readString(20);
+
+                    System.out.print("请输入课程编号：");
+                    String cno = Utility.readString(20);
+
+                    if (electiveService.getElectiveBySnoAndCno(sno, cno) != null) {
+                        Double score = Utility.readDouble();
+                        if (gradeService.add(sno, cno, score) > 0) {
+                            System.out.println("学生分数添加成功！");
+                        } else {
+                            System.out.println("学生分数添加失败！");
+                        }
+                    } else {
+                        System.out.println("无该选课信息");
+                    }
+                }
+                case "7" -> {
                     System.out.print("请输入新密码：");
                     String newPassword = Utility.readString(32);
 
@@ -144,7 +217,7 @@ public class SMSView {
                         System.out.println("密码未修改！");
                     }
                 }
-                case "7" -> {
+                case "8" -> {
                     choice = Utility.readConfirmSelection();
                     if (choice == 'Y') {
                         loop = false; //退出登录

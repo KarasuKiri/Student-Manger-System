@@ -51,16 +51,16 @@ public class Utility {
     }
 
     /**
-     * 功能：读取键盘输入的整数，长度小于2位
+     * 功能：读取键盘输入的浮点数，长度小于4位
      *
-     * @return 整数
+     * @return 浮点数
      */
-    public static int readInt() {
-        int n;
+    public static double readDouble() {
+        double n;
         for (; ; ) {
-            String str = readKeyBoard(2, false); //一个整数，长度小于2位
+            String str = readKeyBoard(4, false); //一个浮点数，长度小于4位
             try {
-                n = Integer.parseInt(str); //将字符串转换成整数
+                n = Double.parseDouble(str); //将字符串转换成浮点数
                 break;
             } catch (NumberFormatException e) {
                 System.out.print("数字输入错误，请重新输入：");
@@ -71,13 +71,13 @@ public class Utility {
     }
 
     /**
-     * 功能：读取键盘输入的整数或默认值，如果直接回车，则返回默认值，否则返回输入的整数
+     * 功能：读取键盘输入的浮点数或默认值，如果直接回车，则返回默认值，否则返回输入的浮点数
      *
      * @param defaultValue 指定的默认值
-     * @return 整数或默认值
+     * @return 浮点数或默认值
      */
-    public static int readInt(int defaultValue) {
-        int n;
+    public static double readDouble(Double defaultValue) {
+        double n;
         for (; ; ) {
             String str = readKeyBoard(10, true);
             if (str.isEmpty()) {
@@ -85,7 +85,7 @@ public class Utility {
             }
 
             try {
-                n = Integer.parseInt(str);
+                n = Double.parseDouble(str);
                 break;
             } catch (NumberFormatException e) {
                 System.out.print("数字输入错误，请重新输入：");

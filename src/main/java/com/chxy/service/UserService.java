@@ -31,7 +31,7 @@ public class UserService {
      *
      * @param id          当前登录的账号
      * @param newPassword 用户输入的新密码
-     * @return 若非0则操作成功
+     * @return 若大于0则操作成功
      */
     public int changePassword(String id, String newPassword) {
         String sql = "update `User` set password = md5(?) where id = ?";

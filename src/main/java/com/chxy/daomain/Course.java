@@ -52,7 +52,8 @@ public class Course {
 
     @Override
     public String toString() {
-        return ", cname='" + cname + '\'';
+        return ", cno='" + cno + '\'' +
+                ", cname='" + cname + '\'';
     }
 
 }

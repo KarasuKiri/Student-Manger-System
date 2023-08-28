@@ -29,7 +29,7 @@ CREATE TABLE Grade
     sno   VARCHAR(20),
     cno   VARCHAR(20),
     score DECIMAL(4, 1) NOT NULL,
-    gpa   DECIMAL(3, 1) GENERATED ALWAYS AS ((score / 10) - 5) STORED,
+    gpa   DECIMAL(2, 1) GENERATED ALWAYS AS ((score / 10) - 5) STORED,
     PRIMARY KEY (sno, cno),
     FOREIGN KEY (sno, cno) REFERENCES Elective (sno, cno)
 );
@@ -42,4 +42,4 @@ CREATE TABLE `User`
 )
 
 -- 添加管理员用户
-    INSERT INTO `User` VALUES('admin', MD5('123456'));
+    INSERT INTO `User` VALUES ('admin', MD5('123456'));
